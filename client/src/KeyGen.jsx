@@ -1,14 +1,16 @@
 import { Fragment } from "react";
 import server from "./server";
+import { randomPrivateKey, publicKey } from "./utils";
 
 export default function KeyGen({ keys, setKeys }) {
-  function onGenerate(evt) {
-    console.log(`Generate key ${evt}`);
-    setKeys([...keys, { public: "public", private: "private" }]);
+  function onGenerate(_) {
+    const privateKey = randomPrivateKey();
+    const publicKey = publicKey(privateKey);
+
+    setKeys([...keys, { public: publicKey, private: privateKey }]);
   }
 
-  function onClear(evt) {
-    console.log(`Clear key ${evt}`);
+  function onClear(_) {
     setKeys([]);
   }
 
