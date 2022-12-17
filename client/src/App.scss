@@ -15,11 +15,14 @@ label {
 }
 
 .app {
-  display: flex;
   max-width: 1400px;
-  flex-wrap: wrap;
-  gap: 12px;
   margin: 0 auto;
+}
+
+.inline {
+  flex-wrap: wrap;
+  display: flex;
+  gap: 12px;
 }
 
 .container {
@@ -69,6 +72,7 @@ input {
   display: flex;
   flex-direction: column;
   margin: 0;
+  height: fit-content;
 
   .balance {
     text-transform: uppercase;
@@ -88,4 +92,9 @@ input {
     background-color: #fff;
     box-shadow: 3px 3px 3px 0 rgba(0, 0, 0, 0.05);
   }
+}
+
+.info {
+  text-align: center;
+  margin: 1rem;
 }

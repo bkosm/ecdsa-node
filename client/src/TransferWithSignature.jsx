@@ -26,7 +26,7 @@ export default function TransferWithSignature({ signature }) {
 
   return (
     <form className="container wallet" onSubmit={transfer}>
-      <h1>Send Transaction with signature generated below</h1>
+      <h2>Send Transaction with signature generated below</h2>
 
       <label>
         Send Amount

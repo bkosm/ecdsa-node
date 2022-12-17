@@ -10,7 +10,7 @@ export default function Signature({ keys }) {
 
   return (
     <div className="container wallet">
-      <h1>Signature creator</h1>
+      <h2>Signature creator</h2>
 
       <label>
         Message

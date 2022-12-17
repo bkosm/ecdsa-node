@@ -16,7 +16,7 @@ function Wallet({ address, setAddress, balance, setBalance }) {
 
   return (
     <div className="container wallet">
-      <h1>Your Wallet</h1>
+      <h2>Your Wallet</h2>
 
       <label>
         Wallet Address

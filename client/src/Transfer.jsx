@@ -26,7 +26,7 @@ function Transfer({ address, setBalance }) {
 
   return (
     <form className="container wallet" onSubmit={transfer}>
-      <h1>Send Transaction</h1>
+      <h2>Send Transaction</h2>
 
       <label>
         Send Amount

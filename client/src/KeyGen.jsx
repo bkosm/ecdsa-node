@@ -14,7 +14,9 @@ export default function KeyGen({ keys, setKeys }) {
 
   return (
     <div className="container wallet">
-      <h1>Key generator</h1>
+      <h2>Key generator</h2>
+
+      {keys.length === 0 && <a className="info">No keys generated</a>}
 
       {keys.map((key) => (
         <div id={key.public} className="bordered">
@@ -41,11 +43,7 @@ export default function KeyGen({ keys, setKeys }) {
       ))}
       <div>
         <input className="button" value="Generate" onClick={onGenerate} />
-        <input
-          className="button"
-          value="Remove keys"
-          onClick={onClear}
-        />
+        <input className="button" value="Remove keys" onClick={onClear} />
       </div>
     </div>
   );
