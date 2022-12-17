@@ -8,7 +8,7 @@ import Signature from "./Signature";
 function App() {
   const [balance, setBalance] = useState(0);
   const [address, setAddress] = useState("");
-  const [keys, setKeys] = useState({ public: "", private: "" });
+  const [keys, setKeys] = useState([]);
 
   return (
     <div className="app">
