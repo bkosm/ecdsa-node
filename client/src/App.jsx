@@ -3,6 +3,7 @@ import Transfer from "./Transfer";
 import KeyGen from "./KeyGen";
 import "./App.scss";
 import { useState } from "react";
+import Signature from "./Signature";
 
 function App() {
   const [balance, setBalance] = useState(0);
@@ -19,6 +20,7 @@ function App() {
       />
       <Transfer setBalance={setBalance} address={address} />
       <KeyGen keys={keys} setKeys={setKeys} />
+      <Signature keys={keys} />
     </div>
   );
 }
