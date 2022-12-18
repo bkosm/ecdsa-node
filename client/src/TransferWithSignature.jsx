@@ -5,13 +5,14 @@ export default function TransferWithSignature({}) {
   const [sendAmount, setSendAmount] = useState("");
   const [recipient, setRecipient] = useState("");
   const [signature, setSignature] = useState("");
+  const [recoveryBit, setRecoveryBit] = useState(0);
 
   const pipeVal = (setter) => (evt) => setter(evt.target.value);
 
   async function transfer(evt) {
     evt.preventDefault();
 
-    if (!sendAmount || !recipient || !signature) {
+    if (!sendAmount || !recipient || !signature || !recoveryBit) {
       alert("Please fill all transfer fields");
       return;
     }
@@ -24,6 +25,7 @@ export default function TransferWithSignature({}) {
         amount: parseInt(sendAmount),
         recipient,
         signature,
+        recoveryBit
       });
       setBalance(balance);
     } catch (ex) {
@@ -53,14 +55,26 @@ export default function TransferWithSignature({}) {
         ></input>
       </label>
 
-      <label>
-        Sender signature
-        <input
-          placeholder="Paste a signature"
-          value={signature}
-          onChange={pipeVal(setSignature)}
-        ></input>
-      </label>
+      <div className="inline">
+        <label>
+          Sender signature
+          <input
+            placeholder="Paste a signature"
+            value={signature}
+            onChange={pipeVal(setSignature)}
+          ></input>
+        </label>
+
+        <label>
+          Recovery bit
+          <input
+            placeholder="Enter signature's recovery bit"
+            type="number"
+            value={recoveryBit}
+            onChange={pipeVal(setRecoveryBit)}
+          ></input>
+        </label>
+      </div>
 
       <input type="submit" className="button" value="Transfer" />
     </form>
