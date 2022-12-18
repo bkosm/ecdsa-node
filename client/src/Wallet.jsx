@@ -1,6 +1,5 @@
 import server from "./server";
 
-// function that validates a string is hexadecimal
 function isAddressValid(address) {
   return /^[0-9a-fA-F]*$/.test(address);
 }
