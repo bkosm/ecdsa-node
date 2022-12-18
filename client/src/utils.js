@@ -1,6 +1,6 @@
 import { keccak256 } from "ethereum-cryptography/keccak";
-import { utf8ToBytes, toHex } from "ethereum-cryptography/utils";
-import secp from "ethereum-cryptography/secp256k1";
+import { utf8ToBytes, toHex, hexToBytes } from "ethereum-cryptography/utils";
+import * as secp from "ethereum-cryptography/secp256k1";
 
 /**
  * @param  {...any} fns initial value and functions to pipe 
@@ -12,7 +12,7 @@ const pipe = (...fns) => { const initial = fns.splice(0, 1)[0]; return fns.reduc
  * @param {Uint8Array} publicKey ECDSA public key 
  * @returns {string} Ethereum address as hex string
  */
-function getAddress(publicKey) {
+function getEthAddress(publicKey) {
     return pipe(
         publicKey.slice(1),
         keccak256,
@@ -74,10 +74,10 @@ function randomPrivateKey() {
  * @param {string} privateKey as hex string
  * @returns {string} public key as hex string
  */
-function publicKey(privateKey) {
+function getPublicKey(privateKey) {
     return pipe(
         privateKey,
-        utf8ToBytes,
+        hexToBytes,
         secp.getPublicKey,
         toHex
     )
@@ -96,13 +96,13 @@ function isSigned(signature, messageHash, publicKey) {
 
 export {
     pipe,
-    getAddress,
+    getEthAddress,
     hashMessage,
     recoverKey,
     signMessage,
     randomPrivateKey,
-    publicKey,
-    utf8ToBytes as toBytes,
-    toHex as toString,
-    isSigned
+    getPublicKey,
+    hexToBytes as toBytes,
+    toHex,
+    isSigned,
 }

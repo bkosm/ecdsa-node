@@ -1,11 +1,13 @@
 import { Fragment } from "react";
 import server from "./server";
-import { randomPrivateKey, publicKey } from "./utils";
+import { randomPrivateKey, getPublicKey } from "./utils";
 
 export default function KeyGen({ keys, setKeys }) {
   function onGenerate(_) {
     const privateKey = randomPrivateKey();
-    const publicKey = publicKey(privateKey);
+    console.log("Private key: ", privateKey);
+    const publicKey = getPublicKey(privateKey);
+    console.log("Public key: ", publicKey);
 
     setKeys([...keys, { public: publicKey, private: privateKey }]);
   }
@@ -21,7 +23,7 @@ export default function KeyGen({ keys, setKeys }) {
       {keys.length === 0 && <a className="info">No keys generated</a>}
 
       {keys.map((key) => (
-        <div id={key.public} className="bordered">
+        <div key={key.public} className="bordered">
           <label>
             Public Key
             <input
