@@ -1,15 +1,12 @@
-import { Fragment } from "react";
-import server from "./server";
-import { randomPrivateKey, getPublicKey } from "./utils";
+import { randomPrivateKey, getPublicKey, getEthAddress } from "./utils";
 
 export default function KeyGen({ keys, setKeys }) {
   function onGenerate(_) {
     const privateKey = randomPrivateKey();
-    console.log("Private key: ", privateKey);
     const publicKey = getPublicKey(privateKey);
-    console.log("Public key: ", publicKey);
+    const ethAddress = getEthAddress(publicKey);
 
-    setKeys([...keys, { public: publicKey, private: privateKey }]);
+    setKeys([...keys, { public: publicKey, private: privateKey, address: ethAddress }]);
   }
 
   function onClear(_) {
@@ -18,7 +15,7 @@ export default function KeyGen({ keys, setKeys }) {
 
   return (
     <div className="container wallet">
-      <h2>Key generator</h2>
+      <h2>ECDSA Key generator</h2>
 
       {keys.length === 0 && <a className="info">No keys generated</a>}
 
@@ -43,8 +40,19 @@ export default function KeyGen({ keys, setKeys }) {
               readOnly
             ></input>
           </label>
+
+          <label>
+            Address
+            <input
+              disabled={true}
+              placeholder="Wallet address"
+              value={key.address}
+              readOnly
+            ></input>
+          </label>
         </div>
       ))}
+
       <div>
         <input className="button" value="Generate" onClick={onGenerate} />
         <input className="button" value="Remove keys" onClick={onClear} />

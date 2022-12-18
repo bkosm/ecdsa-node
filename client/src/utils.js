@@ -14,9 +14,11 @@ const pipe = (...fns) => { const initial = fns.splice(0, 1)[0]; return fns.reduc
  */
 function getEthAddress(publicKey) {
     return pipe(
-        publicKey.slice(1),
+        publicKey,
+        hexToBytes,
+        b => b.slice(1),
         keccak256,
-        hash => hash.slice(-20),
+        h => h.slice(-20),
         toHex
     )
 }
