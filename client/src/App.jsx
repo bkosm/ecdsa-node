@@ -4,6 +4,7 @@ import KeyGen from "./KeyGen";
 import "./App.scss";
 import { useState } from "react";
 import Signature from "./Signature";
+import Faucet from "./Faucet";
 
 function App() {
   const [balance, setBalance] = useState(0);
@@ -23,8 +24,9 @@ function App() {
           address={address}
           setAddress={setAddress}
         />
+        <Faucet address={address} setBalance={setBalance} />
         <Transfer setBalance={setBalance} address={address} />
-      </div>
+        </div>
 
       <div className="inline">
         <h1 className="info">Offline components</h1>
