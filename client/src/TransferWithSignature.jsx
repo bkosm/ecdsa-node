@@ -1,14 +1,20 @@
 import { useState } from "react";
 import server from "./server";
 
-export default function TransferWithSignature({ signature }) {
+export default function TransferWithSignature({}) {
   const [sendAmount, setSendAmount] = useState("");
   const [recipient, setRecipient] = useState("");
+  const [signature, setSignature] = useState("");
 
   const pipeVal = (setter) => (evt) => setter(evt.target.value);
 
   async function transfer(evt) {
     evt.preventDefault();
+
+    if (!sendAmount || !recipient || !signature) {
+      alert("Please fill all transfer fields");
+      return;
+    }
 
     try {
       const {
@@ -17,6 +23,7 @@ export default function TransferWithSignature({ signature }) {
         sender: address,
         amount: parseInt(sendAmount),
         recipient,
+        signature,
       });
       setBalance(balance);
     } catch (ex) {
@@ -26,7 +33,7 @@ export default function TransferWithSignature({ signature }) {
 
   return (
     <form className="container wallet" onSubmit={transfer}>
-      <h2>Send Transaction with signature generated below</h2>
+      <h2>Send a transaction with generated signature</h2>
 
       <label>
         Send Amount
@@ -40,9 +47,18 @@ export default function TransferWithSignature({ signature }) {
       <label>
         Recipient
         <input
-          placeholder="Type an address, for example: 0x2"
+          placeholder="Type an address"
           value={recipient}
           onChange={pipeVal(setRecipient)}
+        ></input>
+      </label>
+
+      <label>
+        Sender signature
+        <input
+          placeholder="Paste a signature"
+          value={signature}
+          onChange={pipeVal(setSignature)}
         ></input>
       </label>
 

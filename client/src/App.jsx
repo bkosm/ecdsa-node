@@ -1,10 +1,10 @@
 import Wallet from "./Wallet";
-import Transfer from "./Transfer";
 import KeyGen from "./KeyGen";
 import "./App.scss";
 import { useState } from "react";
 import Signature from "./Signature";
 import Faucet from "./Faucet";
+import TransferWithSignature from "./TransferWithSignature";
 
 function App() {
   const [balance, setBalance] = useState(0);
@@ -25,7 +25,7 @@ function App() {
           setAddress={setAddress}
         />
         <Faucet address={address} setBalance={setBalance} />
-        <Transfer setBalance={setBalance} address={address} />
+        <TransferWithSignature setBalance={setBalance} address={address} />
         </div>
 
       <div className="inline">

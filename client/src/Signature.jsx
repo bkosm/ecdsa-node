@@ -2,10 +2,11 @@ import server from "./server";
 import { useState } from "react";
 
 export default function Signature({ keys }) {
-  const [signature, setSignature] = useState("signature");
+  const [signature, setSignature] = useState("");
 
   function onGenerate(evt) {
     console.log(`Generate signature ${evt}`);
+    setSignature("signature")
   }
 
   return (
