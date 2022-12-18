@@ -50,6 +50,10 @@ input {
   background-color: #fdfdfe;
   padding-inline-start: 0.75rem;
   font-size: 0.875rem;
+
+  .error {
+    border: 1px solid red;
+  }
 }
 
 .button {
