@@ -6,14 +6,13 @@ export default function TransferWithSignature({}) {
   const [recipient, setRecipient] = useState("");
   const [signature, setSignature] = useState("");
   const [recoveryBit, setRecoveryBit] = useState(0);
-  const [messageHash, setMessageHash] = useState("");
 
   const pipeVal = (setter) => (evt) => setter(evt.target.value);
 
   async function transfer(evt) {
     evt.preventDefault();
 
-    if (!sendAmount || !recipient || !signature || !recoveryBit || !messageHash) {
+    if (!sendAmount || !recipient || !signature || !recoveryBit) {
       alert("Please fill all transfer fields");
       return;
     }
@@ -63,15 +62,6 @@ export default function TransferWithSignature({}) {
             placeholder="Paste a signature"
             value={signature}
             onChange={pipeVal(setSignature)}
-          ></input>
-        </label>
-
-        <label>
-          Message hash
-          <input
-            placeholder="Paste the hash"
-            value={messageHash}
-            onChange={pipeVal(setMessageHash)}
           ></input>
         </label>
 
