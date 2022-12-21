@@ -22,7 +22,6 @@ export default function TransferWithSignature({}) {
       const {
         data: { balance },
       } = await server.post(`send`, {
-        sender: address,
         amount: parseInt(sendAmount),
         recipient,
         signature,
