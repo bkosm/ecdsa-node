@@ -31,7 +31,7 @@ export default function TransferWithSignature({}) {
         amount: parseInt(sendAmount),
         recipient,
         signature,
-        recoveryBit,
+        recovery: parseInt(recoveryBit),
         messageHash,
       });
       setBalance(balance);

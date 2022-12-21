@@ -43,7 +43,7 @@ app.post("/faucet/:address", (req, res) => {
 });
 
 app.post("/send", async (req, res) => {
-  const { recipient, amount, signature, recoveryBit, messageHash } = req.body;
+  const { recipient, amount, signature, recovery, messageHash } = req.body;
 
   if (!isAddressValid(recipient)) {
     res.status(400).send({ message: "Invalid sender address!" });
@@ -57,7 +57,7 @@ app.post("/send", async (req, res) => {
     res.status(400).send({ message: "Invalid message hash!" });
   }
   const sender = pipe(
-    await recoverKey(messageHash, signature, recoveryBit),
+    await recoverKey(messageHash, signature, recovery),
     getEthAddress
   )
   if (!sender) {
