@@ -96,6 +96,15 @@ function isSigned(signature, messageHash, publicKey) {
     return secp.verify(signature, messageHash, publicKey);
 }
 
+/**
+ * 
+ * @param {string} address hex string
+ * @returns {boolean} is valid address
+ */
+function isAddressValid(address) {
+    return /^[0-9a-fA-F]*$/.test(address);
+}
+
 export {
     pipe,
     getEthAddress,
@@ -107,4 +116,5 @@ export {
     hexToBytes as toBytes,
     toHex,
     isSigned,
+    isAddressValid,
 }

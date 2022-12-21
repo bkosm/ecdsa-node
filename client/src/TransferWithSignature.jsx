@@ -1,5 +1,6 @@
 import { useState } from "react";
 import server from "./server";
+import { isAddressValid } from "./utils";
 
 export default function TransferWithSignature({}) {
   const [sendAmount, setSendAmount] = useState("");
@@ -10,10 +11,15 @@ export default function TransferWithSignature({}) {
   const pipeVal = (setter) => (evt) => setter(evt.target.value);
 
   async function transfer(evt) {
-    evt.preventDefault();
+    evt.preventDefault()
 
     if (!sendAmount || !recipient || !signature || !recoveryBit) {
       alert("Please fill all transfer fields");
+      return;
+    }
+
+    if (!isAddressValid(recipient)) {
+      alert("Invalid recipient address");
       return;
     }
 
@@ -25,7 +31,6 @@ export default function TransferWithSignature({}) {
         recipient,
         signature,
         recoveryBit,
-        messageHash,
       });
       setBalance(balance);
     } catch (ex) {
@@ -76,7 +81,7 @@ export default function TransferWithSignature({}) {
         </label>
       </div>
 
-      <input type="submit" className="button" value="Transfer" />
+      <input type="submit" className="button" onClick={transfer} />
     </form>
   );
 }

@@ -1,8 +1,5 @@
 import server from "./server";
-
-function isAddressValid(address) {
-  return /^[0-9a-fA-F]*$/.test(address);
-}
+import { isAddressValid } from "./utils";
 
 function Wallet({ address, setAddress, balance, setBalance }) {
   async function onChange(evt) {
