@@ -36,17 +36,13 @@ function hashMessage(message) {
 }
 
 /**
- * @param {string} message any text
+ * @param {string} hash hex hash of a message
  * @param {Uint8Array} signature ECDSA signature
  * @param {number} recoveryBit recovery bit
  * @returns {Promise<Uint8Array>} ECDSA public key
  */
-async function recoverKey(message, signature, recoveryBit) {
-    return pipe(
-        message,
-        hashMessage,
-        m => secp.recoverPublicKey(m, signature, recoveryBit)
-    )
+function recoverKey(hash, signature, recoveryBit) {
+    return secp.recoverPublicKey(hash, signature, recoveryBit)
 }
 
 /**
@@ -96,6 +92,14 @@ function isSigned(signature, messageHash, publicKey) {
     return secp.verify(signature, messageHash, publicKey);
 }
 
+/**
+ * @param {string} address hex string
+ * @returns {boolean} is valid address
+ */
+function isAddressValid(address) {
+    return /^[0-9a-fA-F]*$/.test(address);
+}
+
 module.exports = {
     pipe,
     getEthAddress,
@@ -107,4 +111,5 @@ module.exports = {
     toBytes: hexToBytes,
     toHex,
     isSigned,
+    isAddressValid,
 }
