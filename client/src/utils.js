@@ -97,7 +97,6 @@ function isSigned(signature, messageHash, publicKey) {
 }
 
 /**
- * 
  * @param {string} address hex string
  * @returns {boolean} is valid address
  */
