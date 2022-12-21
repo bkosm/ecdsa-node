@@ -75,6 +75,7 @@ export default function TransferWithSignature({}) {
           <input
             placeholder="Enter signature's recovery bit"
             type="number"
+            defaultValue={0}
             value={recoveryBit}
             onChange={pipeVal(setRecoveryBit)}
           ></input>
