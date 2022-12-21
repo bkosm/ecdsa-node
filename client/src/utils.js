@@ -9,7 +9,7 @@ import * as secp from "ethereum-cryptography/secp256k1";
 const pipe = (...fns) => { const initial = fns.splice(0, 1)[0]; return fns.reduce((last, pipeStep) => pipeStep(last), initial) }
 
 /**
- * @param {Uint8Array} publicKey ECDSA public key 
+ * @param {string} publicKey ECDSA public key 
  * @returns {string} Ethereum address as hex string
  */
 function getEthAddress(publicKey) {
